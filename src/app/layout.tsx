@@ -10,7 +10,7 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
-  title: "cproject",
+  title: "Loreal",
   description: "Using Mulish globally",
 };
 
