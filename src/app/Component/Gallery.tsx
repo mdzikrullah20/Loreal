@@ -127,7 +127,7 @@ const GallerySection: React.FC = () => {
       title: 'Skincare Glow',
       category: 'facial',
       aspectRatio: 'square',
-      image: '/Image/eyedark.png', 
+      image: '/Image/eyedark.png',
       description: 'Glowing skin after facial treatment'
     },
 
@@ -171,11 +171,9 @@ const GallerySection: React.FC = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-[200px] lg:auto-rows-[250px]">
           {galleryItems.map((item, index) => (
             <div
-              key={item.id}
+              key={`${item.id}-${index}`} // Ensures uniqueness
               className={`${getGridClass(item.aspectRatio, index)} group cursor-pointer relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1`}
               onClick={() => setSelectedImage(item)}
-              onMouseEnter={() => setHoveredId(item.id)}
-              onMouseLeave={() => setHoveredId(null)}
             >
               {/* Main Image */}
               <div className="relative w-full h-full">
@@ -187,15 +185,14 @@ const GallerySection: React.FC = () => {
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
                   priority={index < 4} // Prioritize first 4 images
                 />
-                
+  
                 {/* Gradient Overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
               </div>
 
               {/* Hover Overlay */}
-              <div className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-all duration-300 ${
-                hoveredId === item.id ? 'opacity-100' : 'opacity-0'
-              }`}>
+              <div className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-all duration-300 ${hoveredId === item.id ? 'opacity-100' : 'opacity-0'
+                }`}>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
                   <ZoomIn className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300" />
                   <h3 className="text-lg font-semibold mb-1 text-center">{item.title}</h3>
@@ -249,7 +246,7 @@ const GallerySection: React.FC = () => {
                 />
                 {/* Overlay for modal image */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                
+
                 {/* High Resolution Badge */}
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700">
                   High Resolution
